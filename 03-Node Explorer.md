@@ -37,3 +37,5 @@ status > target
 مدلی دیگر از گراف
 
 ![image](https://github.com/user-attachments/assets/62bb0748-d870-4c18-97c3-dc04349c3f95)
+
+![image](https://github.com/user-attachments/assets/e826cabd-c887-4010-9051-8603f17ff9d2)
