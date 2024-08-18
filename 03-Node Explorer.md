@@ -24,7 +24,16 @@ cd node_exporter-1.8.2.linux-amd64.tar.gz
     static_configs:
       - targets: ["192.168.72.18:9100"]
 
-```
+
 go to website
 status > target
-```
+
+![image](https://github.com/user-attachments/assets/85b16b6d-66a0-4541-ac9c-53af015d9dfc)
+
+حالا میتوانیم یک گراف جدید تعریف کنیم .
+
+![image](https://github.com/user-attachments/assets/5345e4bb-4110-4b95-937b-db4437f880dc)
+
+مدلی دیگر از گراف
+
+![image](https://github.com/user-attachments/assets/62bb0748-d870-4c18-97c3-dc04349c3f95)
