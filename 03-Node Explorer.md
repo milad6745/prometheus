@@ -23,7 +23,7 @@ cd node_exporter-1.8.2.linux-amd64.tar.gz
 
     static_configs:
       - targets: ["192.168.72.18:9100"]
-
+```
 
 go to website
 status > target
