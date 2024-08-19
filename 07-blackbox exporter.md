@@ -19,19 +19,18 @@
    در این مثال، فرض می‌کنیم `Blackbox Exporter` در همان سروری که `Prometheus` در حال اجراست با پورت `9115` اجرا می‌شود:
 
    ```yaml
-   scrape_configs:
-     - job_name: 'blackbox_cisco'
-       metrics_path: /probe
-       params:
-         module: [http_2xx]  # ماژولی که پروب HTTP را انجام می‌دهد
-       static_configs:
-         - targets:
-           - https://www.cisco.com  # آدرس سایت مورد نظر
-       relabel_configs:
-         - source_labels: [__address__]
-           target_label: __param_target
-         - target_label: __address__
-           replacement: 127.0.0.1:9115  # آدرس Blackbox Exporter
+     - job_name: "blackbox"
+    metrics_path: /probe
+    params:
+      module: [http_2xx]  # ماژولی که برای پروب HTTP استفاده می‌شود
+    static_configs:
+      - targets:
+        - https://www.cisco.com  # آدرس سایت مورد نظر برای مانیتورینگ
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - target_label: __address__
+        replacement: 127.0.0.1:9115  # آدرس Blackbox Exporter
    ```
 
    توضیحات:
