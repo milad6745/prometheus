@@ -38,13 +38,6 @@
 
    پس از اعمال تنظیمات، `Prometheus` را راه‌اندازی کنید تا پیکربندی جدید را اعمال کند:
 
-   ```bash
-   docker run -d \
-     -p 9090:9090 \
-     -v /path/to/prometheus.yml:/etc/prometheus/prometheus.yml \
-     prom/prometheus
-   ```
-
    - مطمئن شوید که مسیر `/path/to/prometheus.yml` به درستی به فایل `prometheus.yml` اشاره می‌کند.
 
 4. **مشاهده متریک‌ها در Prometheus**:
