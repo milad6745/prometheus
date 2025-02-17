@@ -21,9 +21,22 @@
      helm install prometheus prometheus-community/kube-prometheus-stack
      ```
 
+- چک کردن فایل values.yml v
+
+```bash
+     helm show values prometheus prometheus-community/kube-prometheus-stack > values.yml
+```
+سپس تغییرات مورد نظر را در values.yml  میدهیم و سیم میکنیم  و مجدد اینستال میکنیم.
+
+
+
+     ```bash
+     helm install prometheus prometheus-community/kube-prometheus-stack -f values.yml
+     ```
+
    این دستور تمام اجزای لازم مانند Prometheus، Alertmanager و Grafana را در کلاستر Kubernetes شما نصب می‌کند.
 
-2. **دسترسی به Prometheus و Grafana:**
+1. **دسترسی به Prometheus و Grafana:**
 
    - بعد از نصب، می‌توانید با استفاده از دستور زیر به سرویس‌ها دسترسی پیدا کنید:
 
@@ -41,13 +54,13 @@
 
      به این ترتیب می‌توانید به Grafana از طریق آدرس `http://localhost:3000` دسترسی پیدا کنید. اعتبار ورود پیش‌فرض برای Grafana معمولاً `admin/admin` است.
 
-3. **نظارت و جمع‌آوری داده‌ها:**
+2. **نظارت و جمع‌آوری داده‌ها:**
 
    پس از نصب Prometheus، شما می‌توانید از طریق آن داده‌های مربوط به عملکرد و وضعیت کلاستر Kubernetes خود را مشاهده و بررسی کنید. Prometheus به طور خودکار متریک‌ها را از منابع مختلف در Kubernetes جمع‌آوری خواهد کرد.
 
    برای مشاهده متریک‌ها، به قسمت **Status > Targets** در Prometheus بروید تا بررسی کنید که آیا تمام اجزا به درستی جمع‌آوری می‌شوند یا نه.
 
-4. **تنظیم داشبوردهای Grafana:**
+3. **تنظیم داشبوردهای Grafana:**
 
    در Grafana، شما می‌توانید داشبوردهایی را برای مشاهده متریک‌های مختلف (مثل CPU، Memory، Pods و Node) بسازید. Grafana معمولاً داشبوردهای پیش‌ساخته‌ای برای Kubernetes دارد که می‌توانید آن‌ها را از طریق **Explore** یا **Dashboards > Manage** اضافه کنید.
 
