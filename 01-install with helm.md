@@ -65,3 +65,82 @@
    در Grafana، شما می‌توانید داشبوردهایی را برای مشاهده متریک‌های مختلف (مثل CPU، Memory، Pods و Node) بسازید. Grafana معمولاً داشبوردهای پیش‌ساخته‌ای برای Kubernetes دارد که می‌توانید آن‌ها را از طریق **Explore** یا **Dashboards > Manage** اضافه کنید.
 
 این مراحل به شما کمک خواهد کرد که بتوانید کلاستر Kubernetes خود را با استفاده از Prometheus مانیتور کنید. اگر سوال یا مشکلی داشتید، خوشحال می‌شوم کمک کنم!
+
+
+
+---
+
+### ۱. پیدا کردن آدرس دسترسی به Grafana
+
+چون با Helm نصب کردی و تنظیمات پیش‌فرضه، احتمالاً Grafana یک `Service` داره. این دستور رو بزن تا ببینی:
+
+```bash
+kubectl get svc
+```
+
+دنبال سرویسی بگرد که اسمش چیزی مثل `prometheus-grafana` باشه.
+
+- اگه `Type: ClusterIP` بود، یعنی فقط داخل کلاستر قابل دسترسیه.
+- اگه `Type: NodePort` یا `LoadBalancer` بود، میشه از بیرون هم وصل شد.
+
+**اگه ClusterIP بود** و میخوای راحت تست کنی، می‌تونی پورتش رو به سیستم خودت فوروارد کنی:
+
+```bash
+kubectl port-forward svc/prometheus-grafana 3000:80
+```
+
+حالا برو تو مرورگرت و باز کن:
+
+```
+http://localhost:3000
+```
+
+---
+
+### ۲. لاگین به Grafana
+
+یوزرنیم و پسورد پیش‌فرض معمولاً اینه:
+
+- **Username:** `admin`
+- **Password:** `prom-operator` یا `admin`
+
+اگر پسورد رو نمی‌دونی، می‌تونی از Kubernetes Secret اینجوری دربیاری:
+
+```bash
+kubectl get secret prometheus-grafana -o jsonpath="{.data.admin-password}" | base64 --decode
+```
+
+---
+
+### ۳. Prometheus توی Grafana
+
+حالا تو Grafana به احتمال زیاد **Prometheus** به صورت خودکار به عنوان Datasource اضافه شده.  
+ولی اگه نبود، راحت میتونی Datasource اضافه کنی:
+
+- از منوی کناری > **Connections** > **Data Sources** > **Add data source** > **Prometheus** انتخاب کن.
+- آدرس Prometheus رو بده. معمولاً چیزی شبیه اینه:
+
+```
+http://prometheus-kube-prometheus-prometheus:9090
+```
+(این اسم سرویس Prometheus درون کلاستر هست)
+
+---
+
+### ۴. باز کردن خود Prometheus
+
+اگه میخوای مستقیم خود Prometheus رو ببینی:
+
+```bash
+kubectl port-forward svc/prometheus-kube-prometheus-prometheus 9090
+```
+
+بعد تو مرورگر برو به:
+
+```
+http://localhost:9090
+```
+
+---
+
+
